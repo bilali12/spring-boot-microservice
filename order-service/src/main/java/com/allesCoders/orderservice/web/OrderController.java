@@ -15,9 +15,8 @@ public class OrderController {
     private final OrderService orderService;
     @PostMapping
     @ResponseStatus(CREATED)
-    public void placeOrder(@RequestBody OrderRequest orderRequest) {
-
-        orderService.placeOder(orderRequest);
+    public String placeOrder(@RequestBody OrderRequest orderRequest) {
+        return orderService.placeOder(orderRequest);
     }
 
 

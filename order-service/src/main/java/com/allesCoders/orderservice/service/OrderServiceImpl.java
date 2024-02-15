@@ -28,8 +28,8 @@ public class OrderServiceImpl implements OrderService {
     private final WebClient.Builder webClientBuilder;
 
     @Override
-    public void placeOder(OrderRequest orderRequest) {
-        final String URI = "http://localhost:8082/api/v1/inventorys";
+    public String placeOder(OrderRequest orderRequest) {
+        final String URI = "http://inventory-service/api/v1/inventories";
         Order order = orderMapper.fromOrderRequest(orderRequest);
         List<Boolean> orderValids = new ArrayList<>();
 
@@ -69,6 +69,8 @@ public class OrderServiceImpl implements OrderService {
          else {
             throw new ProductNotExistException("Product(s) does not exit in the stock");
         }
+         return "Order added successfully";
+
 
     }
 }
