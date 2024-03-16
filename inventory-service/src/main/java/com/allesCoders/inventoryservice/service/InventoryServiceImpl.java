@@ -19,7 +19,10 @@ public class InventoryServiceImpl implements InventoryService{
     private final InventoryMapper inventoryMapper;
     @Transactional(readOnly = true)
     @Override
-    public List<InventoryResponse> isInStock(List<String> skuCode) {
+    public List<InventoryResponse> isInStock(List<String> skuCode) throws InterruptedException {
+        log.info("wait started");
+        Thread.sleep(10000);
+        log.info("wait ended");
         return inventoryRepository.findBySkuCodeIn(skuCode).stream()
                 .map(inventory -> inventoryMapper.toInventoryResponse(inventory)).toList();
     }
